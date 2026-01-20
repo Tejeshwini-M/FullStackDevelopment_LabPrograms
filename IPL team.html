@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSK IPL Team</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --csk-yellow: #f9cd05;
+            --csk-blue: #0b2a5b;
+            --csk-dark: #061a38;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        /* Background glows */
+        .csk-glow {
+            position: absolute;
+            filter: blur(70px);
+            opacity: .25;
+            border-radius: 999px;
+        }
+
+        .csk-glow-1 {
+            width: 420px;
+            height: 420px;
+            left: -140px;
+            top: 140px;
+            background: var(--csk-yellow);
+            animation: float1 10s ease-in-out infinite;
+        }
+
+        .csk-glow-2 {
+            width: 520px;
+            height: 520px;
+            right: -180px;
+            bottom: -40px;
+            background: var(--csk-blue);
+            animation: float2 12s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(60px, -30px);
+            }
+        }
+
+        @keyframes float2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-70px, 40px);
+            }
+        }
+
+        .brand-badge {
+            background: var(--csk-yellow);
+            color: #000;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: .25rem .6rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(11, 42, 91, 0.98), rgba(11, 42, 91, 0.80));
+            color: #fff;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 18px 55px rgba(0, 0, 0, .18);
+        }
+
+        .hero small {
+            color: rgba(255, 255, 255, .75);
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: .2px;
+        }
+
+        /* Carousel */
+        .carousel-inner img {
+            object-fit: cover;
+            height: 360px;
+            filter: contrast(1.05) saturate(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-inner img {
+                height: 240px;
+            }
+        }
+
+        /* Navbar theme */
+        .csk-navbar {
+            background: linear-gradient(90deg, var(--csk-blue), var(--csk-dark));
+            border-bottom: 2px solid rgba(249, 205, 5, .45);
+            backdrop-filter: blur(10px);
+        }
+
+        .csk-navbar .nav-link {
+            color: rgba(255, 255, 255, .85) !important;
+            font-weight: 600;
+            position: relative;
+            padding: .5rem .85rem;
+            border-radius: 999px;
+            transition: all .2s ease;
+        }
+
+        .csk-navbar .nav-link:hover {
+            color: #fff !important;
+            background: rgba(249, 205, 5, .14);
+            transform: translateY(-1px);
+        }
+
+        /* ACTIVE LINK HIGHLIGHT */
+        .csk-navbar .nav-link.active {
+            color: #000 !important;
+            background: var(--csk-yellow);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+        }
+
+        /* Animations (NO custom JavaScript) */
+        .animate-fade-up {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: fadeUp .9s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: .15s;
+        }
+
+        .delay-2 {
+            animation-delay: .3s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* CSK themed caption */
+        .csk-caption {
+            background: rgba(11, 42, 91, 0.6);
+            padding: 12px;
+            border-radius: 12px;
+            display: inline-block;
+            border: 1px solid rgba(249, 205, 5, .35);
+        }
+
+        .csk-caption h5 {
+            color: var(--csk-yellow);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, .85);
+        }
+
+        .csk-caption p {
+            color: #fff;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, .85);
+        }
+
+        /* Buttons */
+        .btn-csk {
+            background: var(--csk-yellow);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+
+        .btn-csk:hover {
+            background: #ffd93b;
+            color: #000;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, .15);
+        }
+
+        /* Player cards */
+        .player-card {
+            border: 1px solid rgba(249, 205, 5, .35);
+            transition: transform .2s ease, box-shadow .2s ease;
+            border-radius: 1.25rem;
+            overflow: hidden;
+        }
+
+        .player-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .18);
+        }
+
+        .player-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .player-card .card-body {
+            background: #fff;
+        }
+
+        .player-card .card-title {
+            color: var(--csk-blue);
+            font-weight: 800;
+        }
+
+        .badge-csk {
+            background: var(--csk-yellow);
+            color: #000;
+            font-weight: 800;
+        }
+
+        .badge-role {
+            background: var(--csk-blue);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Section heading underline */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            width: 55%;
+            background: var(--csk-yellow);
+            border-radius: 999px;
+        }
+
+        /* Footer */
+        .csk-footer {
+            background: linear-gradient(135deg, var(--csk-dark), var(--csk-blue));
+            color: #fff;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 18px 55px rgba(0, 0, 0, .18);
+        }
+
+        .csk-footer a {
+            color: var(--csk-yellow);
+            text-decoration: none;
+        }
+
+        .csk-footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            color: rgba(255, 255, 255, .75);
+        }
+
+        .csk-contact li {
+            display: flex;
+            justify-content: flex-end;
+            /* keeps it right aligned */
+            align-items: center;
+            gap: 12px;
+            line-height: 2.1;
+        }
+
+        .csk-contact i {
+            width: 22px;
+            text-align: center;
+            color: var(--csk-yellow);
+            font-size: 1.05rem;
+        }
+
+        .csk-footer .bi {
+            font-size: 1.2rem;
+            transition: 0.25s ease;
+        }
+
+        .csk-footer a:hover .bi {
+            transform: translateY(-3px) scale(1.1);
+            text-shadow: 0 0 14px rgba(249, 205, 5, .9);
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#topNav" data-bs-smooth-scroll="true" tabindex="0">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark csk-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+                <!-- CSK Logo (replace src with your own logo image if you have) -->
+                <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Chennai_Super_Kings_Logo.svg" alt="CSK Logo"
+                    style="height:34px; width:auto;" class="me-1">
+                <span class="fw-bold">Chennai Super Kings</span>
+                <span class="brand-badge ms-2">CSK</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav"
+                aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="topNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#players">Players</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <form class="d-flex ms-lg-3" role="search">
+                    <input class="form-control form-control-sm me-2" type="search" placeholder="Search player"
+                        aria-label="Search">
+                    <button class="btn btn-csk btn-sm" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4" id="home">
+
+        <!-- Floating subtle background glow -->
+        <div class="position-fixed top-0 start-0 w-100 h-100" style="pointer-events:none; z-index:-1;">
+            <div class="csk-glow csk-glow-1"></div>
+            <div class="csk-glow csk-glow-2"></div>
+        </div>
+
+        <!-- HERO SECTION: Left slider + Right about -->
+        <section class="hero p-3 p-md-4 mb-4 animate-fade-up" id="about">
+            <div class="row g-4 align-items-stretch">
+
+                <!-- LEFT: TEAM PICTURES SLIDES -->
+                <div class="col-lg-7">
+                    <div id="cskCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#cskCarousel" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#cskCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#cskCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+
+                        <div class="carousel-inner rounded-4">
+                            <div class="carousel-item active">
+                                <img src="https://i.ytimg.com/vi/GmL854xFYPE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBOZVB2hPtDvblVWsatkMZtjNdLpg"
+                                    class="d-block w-100" alt="CSK Team 1">
+                                <div class="carousel-caption d-none d-md-block csk-caption">
+                                    <h5 class="fw-bold">CSK Spirit</h5>
+                                    <p class="mb-0">Whistle Podu! The yellow army vibe.</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="https://library.sportingnews.com/styles/crop_style_16_9_desktop_webp/s3/2025-03/GettyImages-2205947251.jpg.webp?itok=aTA4Xnsf"
+                                    class="d-block w-100" alt="CSK Team 2">
+                                <div class="carousel-caption d-none d-md-block csk-caption">
+                                    <h5 class="fw-bold">Match Day</h5>
+                                    <p class="mb-0">Calm captaincy and smart strategies.</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="https://www.hindustantimes.com/ht-img/img/2024/05/17/1600x900/CRICKET-IND-IPL-T20-CHENNAI-RAJASTHAN-24_1715963446539_1715963505853.jpg"
+                                    alt="CSK Team 3">
+                                <div class="carousel-caption d-none d-md-block csk-caption">
+                                    <h5 class="fw-bold">Fans + Fire</h5>
+                                    <p class="mb-0">Energy of crowd.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#cskCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#cskCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RIGHT: ABOUT THE TEAM -->
+                <div class="col-lg-5">
+                    <div class="h-100 p-3 p-md-4 rounded-4"
+                        style="background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15);">
+                        <h2 class="hero-title mb-2">About CSK</h2>
+                        <small class="d-block mb-3">Chennai Super Kings • Indian Premier League</small>
+
+                        <p class="mb-3" style="line-height:1.7;">
+                            Chennai Super Kings (CSK) is one of the most loved IPL franchises, known for its strong team
+                            culture,
+                            smart leadership, and loyal fan base called the <b>Yellow Army</b>. CSK is famous for calm
+                            captaincy,
+                            consistent performances, and backing experienced players.
+                        </p>
+
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="tag"><i class="bi bi-geo-alt"></i> Chennai</span>
+                            <span class="tag"><i class="bi bi-people"></i> Yellow Army</span>
+                            <span class="tag"><i class="bi bi-lightning-charge"></i> Aggressive Powerplay</span>
+                            <span class="tag"><i class="bi bi-shield-check"></i> Strong Bowling</span>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="p-3 rounded-4" style="background:rgba(0,0,0,.18);">
+                                    <div class="fw-bold">Home Ground</div>
+                                    <div class="opacity-75">MA Chidambaram Stadium</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 rounded-4" style="background:rgba(0,0,0,.18);">
+                                    <div class="fw-bold">Theme</div>
+                                    <div class="opacity-75">Whistle Podu</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PLAYERS SECTION: 12 Players in Card form -->
+        <section id="players" class="mb-4 animate-fade-up delay-1">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                    <h3 class="fw-bold mb-0 section-title">CSK Players</h3>
+                    <div class="text-muted">12 key players</div>
+                </div>
+                <a class="btn btn-outline-light btn-sm" style="border-color: rgba(11,42,91,.3); color: var(--csk-blue);"
+                    href="#players">View all</a>
+            </div>
+
+            <div class="row g-3">
+                <!-- Card 1 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://media.crictracker.com/media/attachments/1744637988884_msd.jpeg"
+                            class="card-img-top" alt="MS Dhoni">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">MS Dhoni</h5>
+                            <p class="card-text text-muted mb-2">Wicket-keeper • Leader</p>
+                            <span class="badge badge-csk">Captain</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzzlFmVGTFcjHUbMZWFLWKFxVYFvacjsCqqw&s"
+                            class="card-img-top" alt="Ruturaj Gaikwad">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Ruturaj Gaikwad</h5>
+                            <p class="card-text text-muted mb-2">Top-order Batter</p>
+                            <span class="badge badge-role">Batsman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://cdn.shopify.com/s/files/1/0278/4565/6649/files/IMG_1794_480x480.webp?v=1734784491"
+                            class="card-img-top" alt="Ravindra Jadeja">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Ravindra Jadeja</h5>
+                            <p class="card-text text-muted mb-2">All-rounder • Spin</p>
+                            <span class="badge badge-role">All-rounder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://images.financialexpressdigital.com/2025/06/travel-home-decor-38-1.jpg?w=374"
+                            class="card-img-top" alt="Shivam Dube">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Shivam Dube</h5>
+                            <p class="card-text text-muted mb-2">Power-hitter</p>
+                            <span class="badge bg-primary">Batsman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://static.cricketgully.com/news_featured/deepak-chahar-a6b64dbc98.png"
+                            class="card-img-top" alt="Deepak Chahar">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Deepak Chahar</h5>
+                            <p class="card-text text-muted mb-2">Swing Bowler</p>
+                            <span class="badge badge-role">Bowler</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://img.ipl.com/upload/20250923/1193173d7fd9ef1bfeb25a57c08b2c04.webp"
+                            class="card-img-top" alt="Matheesha Pathirana">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">M. Pathirana</h5>
+                            <p class="card-text text-muted mb-2">Fast Bowler • Yorker</p>
+                            <span class="badge bg-danger">Bowler</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://pbs.twimg.com/media/EuarZQ3VgAEvotg.jpg" class="card-img-top" alt="Moeen Ali">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Moeen Ali</h5>
+                            <p class="card-text text-muted mb-2">All-rounder • Off-spin</p>
+                            <span class="badge bg-success">All-rounder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://c.ndtvimg.com/2023-04/p7p48ch8_ajinkya-rahane-pc-bcci_625x300_09_April_23.jpg?im=FeatureCrop,algorithm=dnn,width=806,height=605"
+                            class="card-img-top" alt="Ajinkya Rahane">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Ajinkya Rahane</h5>
+                            <p class="card-text text-muted mb-2">Top-order Batter</p>
+                            <span class="badge bg-primary">Batsman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9LB6Gkd1MAKoeyUMR6RN4aSLsWoGEMadAw&s"
+                            class="card-img-top" alt="Devon Conway">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Devon Conway</h5>
+                            <p class="card-text text-muted mb-2">Opener • WK Batter</p>
+                            <span class="badge bg-primary">Batsman</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://media.crictracker.com/media/attachments/1711521851718_Daryl-Mitchell.jpeg"
+                            class="card-img-top" alt="Daryl Mitchell">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Daryl Mitchell</h5>
+                            <p class="card-text text-muted mb-2">All-rounder</p>
+                            <span class="badge bg-success">All-rounder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 11 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://www.hindustantimes.com/ht-img/img/2023/05/07/550x309/ANI-20230506263-0_1683468972463_1683469026280.jpg"
+                            class="card-img-top" alt="Tushar Deshpande">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Tushar Deshpande</h5>
+                            <p class="card-text text-muted mb-2">Fast Bowler</p>
+                            <span class="badge bg-danger">Bowler</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card player-card h-100 shadow-sm">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgmBtgmCfFpkYy8O-8Qq-kpSG293-M_VxKJQ&s"
+                            class="card-img-top" alt="Rachin Ravindra">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">Rachin Ravindra</h5>
+                            <p class="card-text text-muted mb-2">All-rounder</p>
+                            <span class="badge bg-success">All-rounder</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER (Correct placement: OUTSIDE main + inside container) -->
+        <footer id="footer" class="container pb-4 animate-fade-up delay-2">
+            <div class="csk-footer p-4 p-md-5">
+
+
+                <div class="row g-4 align-items-start">
+                    <!-- LEFT SIDE CONTENT -->
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/2/2b/Chennai_Super_Kings_Logo.svg"
+                                alt="CSK" style="height:38px; width:auto;">
+                            <h4 class="fw-bold mb-0">CSK Fan Website</h4>
+                        </div>
+
+
+                        <p class="mb-3" style="line-height:1.8; color:rgba(255,255,255,.85);">
+                            A fan-made CSK themed website built using Bootstrap. Proudly celebrating the Yellow Army
+                            spirit —
+                            match moments, legends, and the roar of Chepauk.
+                        </p>
+
+
+                        <div class="d-flex gap-2 flex-wrap">
+                            <span class="px-3 py-2 rounded-3"
+                                style="background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.2);">
+                                <i class="bi bi-lightning-charge"></i> Whistle Podu
+                            </span>
+                            <span class="px-3 py-2 rounded-3"
+                                style="background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.2);">
+                                <i class="bi bi-trophy"></i> Yellow Army
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <!-- RIGHT SIDE (Contact above icons) -->
+                    <div class="col-lg-4 text-lg-end">
+                        <h5 class="fw-bold mb-3" style="color:var(--csk-yellow);">Contact Details</h5>
+                        <ul class="list-unstyled mb-4 csk-contact" style="color:rgba(255,255,255,.85);">
+                            <li><i class="bi bi-person-circle"></i> <span>Name: <b>Tejeshwini M</b></span></li>
+                            <li><i class="bi bi-envelope-fill"></i> <span>Email: <a
+                                        href="mailto:tejeshwini73@gmail.com">tejeshwini73@gmail.com</a></span></li>
+                            <li><i class="bi bi-telephone-fill"></i> <span>Phone: <a href="tel:+910000000000">+91 6360912852</a></span></li>
+                            <li><i class="bi bi-geo-alt-fill"></i> <span>Location: India</span></li>
+                        </ul>
+
+
+                        <!-- Social Icons placed BELOW contact (right side) -->
+                        <div class="d-flex justify-content-lg-end gap-3">
+                            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr class="my-3" style="border-color: rgba(255,255,255,.18);">
+
+
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                    <small style="color:rgba(255,255,255,.75);">© 2026 CSK Fan Page • Built with Bootstrap</small>
+                    <small style="color:rgba(255,255,255,.75);">Whistle Podu 💛</small>
+                </div>
+
+
+            </div>
+        </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

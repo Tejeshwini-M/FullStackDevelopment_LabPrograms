@@ -1,0 +1,28 @@
+h2{
+    color: burlywood;
+}
+.odd{
+    color: red;
+}
+.even{
+    color: blue;
+}
+#middle{
+    color: rgb(97, 209, 62);
+}   
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    border: 2px solid black ;
+
+}
+.container{
+    display: flex;
+}
+@media screen (min-width: 601px) and (max-width: 900px){
+    .box{
+        background-color: green;
+    }
+    
+}

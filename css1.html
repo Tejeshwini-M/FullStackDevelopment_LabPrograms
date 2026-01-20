@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        h1 {
+            color: blue;
+            font-family: Arial, sans-serif;
+            font-size: 36px;
+            text-align: center;
+            transition: color 0.5s ease;
+        }
+
+        h1:hover {
+            color: green;
+            animation: bounce 0.5s;
+            opacity: 0.5;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color:red">BTCE</h1> <!--color , font , size , allignment , transition , animation etc\-->
+    <h1>Section A</h1>
+    <h2>I am getting color from external css</h2>
+</body>
+</html>
